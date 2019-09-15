@@ -6,13 +6,14 @@
 cd /var/www/webapp/src
 
 # Install some dependencies
-pip3 install -r requirements.txt
+bundle install
+yarn install --check-files
 
 # Maybe collect statics?
-#python3 manage.py collectstatic --no-input
+#RAILS_ENV=production rails assets:precompile
 
 # Maybe run migrations?
-# python3 manage.py migrate
+#RAILS_ENV=production rails db:migrate
 
-# We want to restart uWSGI after installing our dependencies
-sudo systemctl restart uwsgi
+# We want to restart Passenger after installing our dependencies
+sudo systemctl restart passenger
