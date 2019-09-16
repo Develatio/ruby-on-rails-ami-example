@@ -5,13 +5,13 @@
 
 cd /var/www/webapp/src
 
-setfacl -R -d -m u:admin:rwx ./tmp ./log
-setfacl -R -d -m g:www-data:rwx ./tmp ./log
-setfacl -R -d -m o::r-x ./tmp ./log
+sudo setfacl -R -d -m u:admin:rwx ./tmp ./log
+sudo setfacl -R -d -m g:www-data:rwx ./tmp ./log
+sudo setfacl -R -d -m o::r-x ./tmp ./log
 
-setfacl -R -m u:admin:rwx ./tmp ./log
-setfacl -R -m g:www-data:rwx ./tmp ./log
-setfacl -R -m o::r-x ./tmp ./log
+sudo setfacl -R -m u:admin:rwx ./tmp ./log
+sudo setfacl -R -m g:www-data:rwx ./tmp ./log
+sudo setfacl -R -m o::r-x ./tmp ./log
 
 # Install some dependencies
 bundle install
@@ -23,5 +23,5 @@ yarn install --check-files
 # Maybe run migrations?
 #RAILS_ENV=production rails db:migrate
 
-# We want to restart Passenger after installing our dependencies
-sudo systemctl restart passenger
+# We want to restart Puma after installing our dependencies
+sudo systemctl restart puma
